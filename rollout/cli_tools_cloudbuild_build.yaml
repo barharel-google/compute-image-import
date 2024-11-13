@@ -110,15 +110,15 @@ steps:
   - --context=/workspace
   - --dockerfile=gce_ovf_export.Dockerfile
 
-# Copy Linux binaries to GCS - _IMAGE_PROJECT_1
+# Copy Linux binaries to GCS - _IMAGE_PROJECT
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['cp', '/workspace/linux/*', 'gs://$_IMAGE_PROJECT_1/$_RELEASE/linux/']
 
-# Copy Windows binaries to GCS - _IMAGE_PROJECT_1
+# Copy Windows binaries to GCS - _IMAGE_PROJECT
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['cp', '/workspace/windows/*', 'gs://$_IMAGE_PROJECT_1/$_RELEASE/windows/']
 
-# Make binaries world-readable - _IMAGE_PROJECT_1
+# Make binaries world-readable - _IMAGE_PROJECT
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['-m', 'acl', '-r', 'ch', '-u', 'AllUsers:R', 'gs://$_IMAGE_PROJECT_1/$_RELEASE/*']
 
